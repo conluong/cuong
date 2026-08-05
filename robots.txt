@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin-users.html
+Disallow: /admin-documents.html
+Disallow: /profile.html
+
+Sitemap: https://your-domain.com/sitemap.xml

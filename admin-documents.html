@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quản lý tài liệu — Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<header class="navbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+      <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT <span class="badge badge-admin" style="margin-left:4px;">Admin</span></a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+      <a href="index.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i> Về website</a>
+      <div id="nav-user" class="dropdown">
+        <button class="avatar-btn" data-dropdown-toggle="user-dropdown">
+          <div class="avatar" id="nav-avatar">?</div>
+          <span id="nav-user-name" style="font-size:.85rem; font-weight:700;"></span>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown">
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a>
+          <hr><button data-logout><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="as-label">Quản trị</div>
+    <nav class="admin-nav">
+      <a href="admin.html"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a href="admin-users.html"><i class="fa-solid fa-users"></i> Quản lý người dùng</a>
+      <a href="admin-documents.html" class="active"><i class="fa-solid fa-folder-open"></i> Quản lý tài liệu</a>
+    </nav>
+    <div class="as-label">Khác</div>
+    <nav class="admin-nav">
+      <a href="documents.html"><i class="fa-solid fa-eye"></i> Xem website</a>
+      <a href="profile.html"><i class="fa-solid fa-user-gear"></i> Tài khoản của tôi</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div><h1>Quản lý tài liệu</h1><p>Thêm tài liệu mới bằng cách dán link Google Drive.</p></div>
+      <div style="display:flex; gap:10px;">
+        <div class="table-search">
+          <i class="fa-solid fa-magnifying-glass" style="color:var(--text-faint);"></i>
+          <input type="text" id="doc-manage-search" placeholder="Tìm tài liệu...">
+        </div>
+        <button class="btn btn-primary" id="btn-add-doc"><i class="fa-solid fa-plus"></i> Thêm tài liệu</button>
+      </div>
+    </div>
+
+    <div class="admin-doc-grid" id="docs-management-grid"></div>
+  </main>
+</div>
+
+<!-- Modal thêm/sửa tài liệu -->
+<div class="modal-overlay" id="doc-form-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="doc-form-title">Thêm tài liệu mới</h3>
+      <button class="modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="doc-form">
+      <div class="field">
+        <label for="doc-title-input">Tiêu đề tài liệu</label>
+        <div class="input-wrap"><i class="fa-solid fa-heading"></i><input type="text" id="doc-title-input" placeholder="VD: Đề thi thử Toán 2026 - Sở GD Hà Nội" required></div>
+      </div>
+      <div class="field">
+        <label for="doc-subject-select">Môn học</label>
+        <select id="doc-subject-select" required></select>
+      </div>
+      <div class="field">
+        <label for="doc-desc-input">Mô tả</label>
+        <textarea id="doc-desc-input" placeholder="Mô tả ngắn về nội dung tài liệu..."></textarea>
+      </div>
+      <div class="field">
+        <label for="doc-link-input">Link Google Drive</label>
+        <div class="input-wrap"><i class="fa-brands fa-google-drive"></i><input type="url" id="doc-link-input" placeholder="https://drive.google.com/file/d/..." required></div>
+        <div id="doc-link-preview" style="font-size:.78rem; margin-top:8px; font-weight:600;"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Lưu tài liệu <i class="fa-solid fa-check"></i></button>
+    </form>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

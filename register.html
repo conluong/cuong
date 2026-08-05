@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng ký — Ôn Thi THPT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<div class="auth-wrap">
+  <div class="auth-side">
+    <div class="blob blob-1" style="top:-60px; right:-40px;"></div>
+    <div class="blob blob-2" style="bottom:-60px; left:-40px;"></div>
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+    <h2>Tạo tài khoản miễn phí, mở khóa toàn bộ kho tài liệu.</h2>
+    <p>Đăng ký chỉ mất 30 giây. Tải không giới hạn tài liệu ôn thi tốt nghiệp THPT cho tất cả các môn.</p>
+    <div class="side-bubbles">
+      <div class="scantron-bubble"></div><div class="scantron-bubble filled"></div><div class="scantron-bubble filled"></div><div class="scantron-bubble"></div><div class="scantron-bubble filled"></div>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <button class="icon-btn theme-toggle-abs" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+    <div class="auth-box fade-in">
+      <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Về trang chủ</a>
+      <h1>Tạo tài khoản</h1>
+      <p class="sub">Điền thông tin bên dưới để bắt đầu.</p>
+
+      <form id="register-form" novalidate>
+        <div class="field">
+          <label for="reg-name">Họ và tên</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="reg-name" placeholder="Nguyễn Văn A" autocomplete="name" required>
+          </div>
+          <span class="hint-error">Vui lòng nhập họ tên hợp lệ.</span>
+        </div>
+        <div class="field">
+          <label for="reg-email">Địa chỉ email</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="reg-email" placeholder="ban@email.com" autocomplete="email" required>
+          </div>
+          <span class="hint-error">Email không hợp lệ.</span>
+        </div>
+        <div class="field">
+          <label for="reg-password">Mật khẩu</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="reg-password" placeholder="Tối thiểu 6 ký tự" autocomplete="new-password" required>
+            <button type="button" class="toggle-pass" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="strength-bar"><span id="strength-fill"></span></div>
+          <div class="strength-label" id="strength-label"></div>
+          <span class="hint-error">Mật khẩu cần tối thiểu 6 ký tự.</span>
+        </div>
+        <div class="field">
+          <label for="reg-confirm">Nhập lại mật khẩu</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="reg-confirm" placeholder="••••••••" autocomplete="new-password" required>
+          </div>
+          <span class="hint-error">Mật khẩu nhập lại không khớp.</span>
+        </div>
+        <div class="form-row-between" style="margin-bottom:22px;">
+          <label class="checkbox-row"><input type="checkbox" id="reg-terms"> Tôi đồng ý với <a href="#" style="color:var(--primary); font-weight:700;">Điều khoản sử dụng</a></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Tạo tài khoản <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+
+      <p class="auth-foot">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

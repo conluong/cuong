@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Không tìm thấy trang</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .nf-wrap{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; position:relative; overflow:hidden; }
+  .nf-bubbles{ display:flex; gap:16px; margin-bottom:30px; }
+  .nf-bubbles .scantron-bubble{ width:26px; height:26px; border-width:2.5px; }
+  .nf-code{ font-family:var(--font-display); font-size:clamp(4rem,14vw,7rem); font-weight:800; background:var(--grad-hero); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1; }
+  .nf-wrap h2{ margin:14px 0 10px; font-size:1.4rem; }
+  .nf-wrap p{ color:var(--text-muted); max-width:420px; margin-bottom:28px; }
+</style>
+</head>
+<body>
+<div class="blob blob-1" style="position:fixed; top:-80px; right:-60px; width:320px; height:320px; background:var(--primary-light); border-radius:50%; filter:blur(60px); opacity:.4;"></div>
+<div class="blob blob-2" style="position:fixed; bottom:-80px; left:-60px; width:280px; height:280px; background:var(--accent); border-radius:50%; filter:blur(60px); opacity:.35;"></div>
+
+<div class="nf-wrap fade-in">
+  <div class="nf-bubbles">
+    <div class="scantron-bubble filled"></div>
+    <div class="scantron-bubble"></div>
+    <div class="scantron-bubble filled"></div>
+    <div class="scantron-bubble"></div>
+  </div>
+  <div class="nf-code">404</div>
+  <h2>Trang bạn tìm không tồn tại</h2>
+  <p>Có vẻ như bạn đã "tô nhầm đáp án". Đường dẫn này không tồn tại hoặc đã được di chuyển.</p>
+  <div style="display:flex; gap:12px;">
+    <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house"></i> Về trang chủ</a>
+    <a href="documents.html" class="btn btn-outline"><i class="fa-solid fa-book"></i> Xem tài liệu</a>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

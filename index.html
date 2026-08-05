@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ôn Thi THPT — Kho tài liệu ôn thi tốt nghiệp THPT miễn phí</title>
+<meta name="description" content="Kho tài liệu ôn thi tốt nghiệp THPT đầy đủ 11 môn học: Toán, Ngữ văn, Tiếng Anh, Vật lý, Hóa học, Sinh học, Lịch sử, Địa lý, GDKT&PL, Tin học, Công nghệ. Xem trước và tải miễn phí.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Ôn Thi THPT — Kho tài liệu ôn thi tốt nghiệp THPT">
+<meta property="og:description" content="Tổng hợp đề thi, tài liệu ôn tập tốt nghiệp THPT đầy đủ các môn, xem trước và tải miễn phí.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="documents.html">Tài liệu</a>
+      <a href="documents.html#subjects-anchor">Môn học</a>
+      <a href="index.html#about-anchor">Giới thiệu</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()" aria-label="Đổi giao diện"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+
+      <div id="nav-guest" style="display:flex; gap:10px;">
+        <a href="login.html" class="btn btn-ghost btn-sm">Đăng nhập</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Đăng ký</a>
+      </div>
+
+      <div id="nav-user" class="dropdown" style="display:none;">
+        <button class="avatar-btn" data-dropdown-toggle="user-dropdown">
+          <div class="avatar" id="nav-avatar">?</div>
+          <span id="nav-user-name" style="font-size:.85rem; font-weight:700;"></span>
+          <i class="fa-solid fa-chevron-down" style="font-size:.7rem; color:var(--text-faint);"></i>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown">
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a>
+          <a href="admin.html" id="nav-admin-link" style="display:none;"><i class="fa-solid fa-gauge"></i> Trang quản trị</a>
+          <hr>
+          <button data-logout><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Miễn phí • Cập nhật liên tục</span>
+      <h1>Ôn thi tốt nghiệp THPT <span>chủ động &amp; hiệu quả</span></h1>
+      <p class="lead">Kho tài liệu, đề thi thử và tổng hợp kiến thức cho 11 môn học, được tuyển chọn và cập nhật mỗi ngày — xem trước ngay trên trình duyệt, không cần tải về mới xem được.</p>
+
+      <form class="hero-search" onsubmit="event.preventDefault(); location.href='documents.html?q='+encodeURIComponent(this.q.value)">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="q" placeholder="Tìm đề thi, tài liệu, môn học...">
+        <button type="submit">Tìm kiếm</button>
+      </form>
+
+      <div class="hero-stats">
+        <div><strong id="stat-docs">—</strong><span>Tài liệu</span></div>
+        <div><strong>11</strong><span>Môn học</span></div>
+        <div><strong id="stat-downloads-home">—</strong><span>Lượt tải</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="floating-doc glass fd-1"><i class="fa-solid fa-file-lines"></i> Đề thi thử 2026</div>
+      <div class="floating-doc glass fd-2"><i class="fa-solid fa-square-check"></i> Đã tải 12.4k lần</div>
+      <div class="glass answer-card">
+        <div class="ac-title"><i class="fa-solid fa-clock"></i> Đếm ngược kỳ thi tốt nghiệp THPT</div>
+        <div class="ac-sub">Thời gian còn lại tính theo phiếu trả lời trắc nghiệm</div>
+        <div class="bubble-countdown" id="exam-countdown"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUBJECTS ===== -->
+<section class="subjects" id="subjects-anchor">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>Chọn môn học của bạn</h2><p>11 môn thi tốt nghiệp THPT — đầy đủ lý thuyết, bài tập và đề thi thử.</p></div>
+      <a href="documents.html" class="btn btn-outline btn-sm">Xem tất cả tài liệu <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="subject-grid" id="subject-grid"></div>
+  </div>
+</section>
+
+<!-- ===== FEATURED DOCS ===== -->
+<section class="featured">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>Tài liệu được tải nhiều nhất</h2><p>Những tài liệu học sinh tin dùng nhất tuần này.</p></div>
+    </div>
+    <div class="doc-grid" id="featured-docs"></div>
+  </div>
+</section>
+
+<section id="about-anchor">
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Sẵn sàng bứt phá điểm số?</h2>
+      <p>Tạo tài khoản miễn phí để lưu tài liệu yêu thích và tải không giới hạn.</p>
+      <a href="register.html" class="btn btn-outline">Đăng ký ngay <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:14px; display:flex;"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+        <p>Nền tảng chia sẻ tài liệu ôn thi tốt nghiệp THPT miễn phí, đồng hành cùng học sinh Việt Nam trên hành trình chinh phục kỳ thi.</p>
+        <div class="social-row">
+          <a href="#" class="icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="icon-btn"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Điều hướng</h4>
+        <ul><li><a href="index.html">Trang chủ</a></li><li><a href="documents.html">Tài liệu</a></li><li><a href="login.html">Đăng nhập</a></li><li><a href="register.html">Đăng ký</a></li></ul>
+      </div>
+      <div>
+        <h4>Môn học</h4>
+        <ul><li><a href="documents.html?subject=toan">Toán học</a></li><li><a href="documents.html?subject=nguvan">Ngữ văn</a></li><li><a href="documents.html?subject=tienganh">Tiếng Anh</a></li><li><a href="documents.html?subject=vatly">Vật lý</a></li></ul>
+      </div>
+      <div>
+        <h4>Hỗ trợ</h4>
+        <ul><li><a href="#">Câu hỏi thường gặp</a></li><li><a href="#">Liên hệ</a></li><li><a href="#">Điều khoản sử dụng</a></li><li><a href="#">Chính sách bảo mật</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ôn Thi THPT. Bảo lưu mọi quyền.</span>
+      <span>Xây dựng với ❤ dành cho học sinh Việt Nam</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script>
+  // Đếm ngược đến ngày thi tốt nghiệp THPT (ví dụ: 26/06/2027 — có thể chỉnh theo lịch thi thật)
+  function initCountdown(){
+    const target = new Date("2027-06-26T07:00:00");
+    const el = document.getElementById("exam-countdown");
+    if(!el) return;
+    function tick(){
+      const diff = Math.max(0, target - new Date());
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor(diff%86400000/3600000);
+      const m = Math.floor(diff%3600000/60000);
+      el.innerHTML = ["Ngày","Giờ","Phút"].map((label,i)=>{
+        const val = [d,h,m][i];
+        const digits = String(val).padStart(2,"0").split("");
+        const bubbleRows = digits.map(digit => {
+          let row = "";
+          for(let n=0;n<5;n++) row += `<div class="scantron-bubble ${n==(+digit%5)?"filled":""}"></div>`;
+          return `<div class="bubble-row">${row}</div>`;
+        }).join("");
+        return `<div class="bubble-unit"><div class="num">${val}</div><div class="lbl">${label}</div></div>`;
+      }).join("");
+    }
+    tick();
+    setInterval(tick, 60000);
+  }
+  initCountdown();
+  renderSubjectGrid("subject-grid");
+  loadFeaturedDocuments("featured-docs");
+  db.collection("documents").get().then(qs => document.getElementById("stat-docs").textContent = qs.size).catch(()=>document.getElementById("stat-docs").textContent="0");
+  db.collection("downloads").get().then(qs => document.getElementById("stat-downloads-home").textContent = qs.size).catch(()=>document.getElementById("stat-downloads-home").textContent="0");
+  guardPage({});
+  logVisit();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập — Ôn Thi THPT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<div class="auth-wrap">
+  <div class="auth-side">
+    <div class="blob blob-1" style="top:-60px; right:-40px;"></div>
+    <div class="blob blob-2" style="bottom:-60px; left:-40px;"></div>
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+    <h2>Chào mừng trở lại với hành trình ôn thi của bạn.</h2>
+    <p>Đăng nhập để tiếp tục tải tài liệu, lưu môn học yêu thích và theo dõi tiến độ ôn tập.</p>
+    <div class="side-bubbles">
+      <div class="scantron-bubble filled"></div><div class="scantron-bubble"></div><div class="scantron-bubble filled"></div><div class="scantron-bubble"></div><div class="scantron-bubble filled"></div>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <button class="icon-btn theme-toggle-abs" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+    <div class="auth-box fade-in">
+      <a href="index.html" class="back-home"><i class="fa-solid fa-arrow-left"></i> Về trang chủ</a>
+      <h1>Đăng nhập</h1>
+      <p class="sub">Nhập thông tin tài khoản để tiếp tục.</p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="login-email">Địa chỉ email</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="login-email" placeholder="ban@email.com" autocomplete="email" required>
+          </div>
+          <span class="hint-error">Email không hợp lệ.</span>
+        </div>
+        <div class="field">
+          <label for="login-password">Mật khẩu</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+            <button type="button" class="toggle-pass" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <span class="hint-error">Vui lòng nhập mật khẩu.</span>
+        </div>
+        <div class="form-row-between">
+          <label class="checkbox-row"><input type="checkbox" checked> Ghi nhớ đăng nhập</label>
+          <a href="forgot-password.html">Quên mật khẩu?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Đăng nhập <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+
+      <p class="auth-foot">Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

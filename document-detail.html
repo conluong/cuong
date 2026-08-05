@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chi tiết tài liệu — Ôn Thi THPT</title>
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/documents.css">
+</head>
+<body>
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="documents.html">Tài liệu</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+      <div id="nav-guest" style="display:flex; gap:10px;">
+        <a href="login.html" class="btn btn-ghost btn-sm">Đăng nhập</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Đăng ký</a>
+      </div>
+      <div id="nav-user" class="dropdown" style="display:none;">
+        <button class="avatar-btn" data-dropdown-toggle="user-dropdown">
+          <div class="avatar" id="nav-avatar">?</div>
+          <span id="nav-user-name" style="font-size:.85rem; font-weight:700;"></span>
+          <i class="fa-solid fa-chevron-down" style="font-size:.7rem; color:var(--text-faint);"></i>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown">
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a>
+          <a href="admin.html" id="nav-admin-link" style="display:none;"><i class="fa-solid fa-gauge"></i> Trang quản trị</a>
+          <hr><button data-logout><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div id="detail-not-found" class="empty-state" style="display:none; padding-top:140px;">
+    <i class="fa-solid fa-file-circle-question"></i>
+    <p>Không tìm thấy tài liệu này. Có thể đã bị gỡ bỏ.</p>
+    <a href="documents.html" class="btn btn-primary mt-16">Về danh sách tài liệu</a>
+  </div>
+
+  <div class="detail-wrap" id="detail-wrap">
+    <div class="detail-main">
+      <div class="detail-preview">
+        <iframe id="pdf-iframe" class="modal-pdf" style="height:640px;" title="Xem trước tài liệu" loading="lazy"></iframe>
+        <div class="detail-info">
+          <span class="subj-tag" id="detail-subject-tag">Môn học</span>
+          <h1 id="detail-title">Đang tải...</h1>
+          <div class="doc-meta">
+            <span><i class="fa-solid fa-user"></i> <span id="detail-author"></span></span>
+            <span><i class="fa-regular fa-calendar"></i> <span id="detail-date"></span></span>
+            <span><i class="fa-solid fa-download"></i> <span id="detail-downloads"></span> lượt tải</span>
+          </div>
+          <p class="desc" id="detail-desc"></p>
+        </div>
+      </div>
+
+      <div class="mt-32">
+        <h3 style="font-size:1.1rem; margin-bottom:16px;">Tài liệu liên quan</h3>
+        <div class="doc-grid" id="related-docs"></div>
+      </div>
+    </div>
+
+    <aside class="detail-side">
+      <div class="card">
+        <button class="btn btn-primary btn-block" id="btn-download"><i class="fa-solid fa-download"></i> Tải tài liệu</button>
+        <div class="mt-16">
+          <div class="side-stat-row"><span>Lượt tải</span><strong id="side-downloads">0</strong></div>
+          <div class="side-stat-row"><span>Môn học</span><strong id="side-subject">—</strong></div>
+          <div class="side-stat-row"><span>Ngày đăng</span><strong id="side-date">—</strong></div>
+        </div>
+        <div class="share-row">
+          <button id="btn-copy-link"><i class="fa-solid fa-link"></i> Sao chép link</button>
+        </div>
+      </div>
+      <div class="card" style="padding:22px;">
+        <h4 style="font-size:.92rem; margin-bottom:12px;"><i class="fa-solid fa-fire" style="color:var(--warn);"></i> Top tài liệu tải nhiều</h4>
+        <div id="top-docs-list-sidebar" class="text-muted" style="font-size:.85rem;">Đang cập nhật...</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Ôn Thi THPT. Bảo lưu mọi quyền.</span>
+      <span>Xây dựng với ❤ dành cho học sinh Việt Nam</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script>
+  guardPage({});
+</script>
+</body>
+</html>

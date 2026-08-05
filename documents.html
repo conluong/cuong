@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danh sách tài liệu — Ôn Thi THPT</title>
+<meta name="description" content="Duyệt và tìm kiếm toàn bộ tài liệu ôn thi tốt nghiệp THPT theo môn học, mới nhất hoặc tải nhiều nhất.">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/documents.css">
+</head>
+<body>
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT</a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="documents.html">Tài liệu</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+      <div id="nav-guest" style="display:flex; gap:10px;">
+        <a href="login.html" class="btn btn-ghost btn-sm">Đăng nhập</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Đăng ký</a>
+      </div>
+      <div id="nav-user" class="dropdown" style="display:none;">
+        <button class="avatar-btn" data-dropdown-toggle="user-dropdown">
+          <div class="avatar" id="nav-avatar">?</div>
+          <span id="nav-user-name" style="font-size:.85rem; font-weight:700;"></span>
+          <i class="fa-solid fa-chevron-down" style="font-size:.7rem; color:var(--text-faint);"></i>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown">
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a>
+          <a href="admin.html" id="nav-admin-link" style="display:none;"><i class="fa-solid fa-gauge"></i> Trang quản trị</a>
+          <hr><button data-logout><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <h1>Kho tài liệu ôn thi</h1>
+    <p id="result-count" class="text-muted">Đang tải...</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="toolbar glass">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="doc-search-input" placeholder="Tìm theo tên tài liệu, người đăng...">
+    </div>
+    <select id="doc-sort-select">
+      <option value="newest">Mới nhất</option>
+      <option value="oldest">Cũ nhất</option>
+      <option value="popular">Tải nhiều nhất</option>
+    </select>
+  </div>
+
+  <div id="subjects-anchor"></div>
+  <div class="chip-row" id="subject-chip-row"></div>
+
+  <div class="doc-grid-full" id="doc-grid-full"></div>
+  <div class="pagination" id="pagination"></div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Ôn Thi THPT. Bảo lưu mọi quyền.</span>
+      <span>Xây dựng với ❤ dành cho học sinh Việt Nam</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script>
+  guardPage({});
+  logVisit();
+</script>
+</body>
+</html>

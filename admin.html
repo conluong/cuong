@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin — Ôn Thi THPT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+<div id="page-loader"><div class="loader-bubbles"><span></span><span></span><span></span><span></span></div></div>
+
+<header class="navbar">
+  <div class="container">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <button class="icon-btn sidebar-toggle" id="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+      <a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></span> Ôn Thi THPT <span class="badge badge-admin" style="margin-left:4px;">Admin</span></a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+      <a href="index.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i> Về website</a>
+      <div id="nav-user" class="dropdown">
+        <button class="avatar-btn" data-dropdown-toggle="user-dropdown">
+          <div class="avatar" id="nav-avatar">?</div>
+          <span id="nav-user-name" style="font-size:.85rem; font-weight:700;"></span>
+        </button>
+        <div class="dropdown-menu" id="user-dropdown">
+          <a href="profile.html"><i class="fa-solid fa-user"></i> Hồ sơ cá nhân</a>
+          <hr><button data-logout><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="as-label">Quản trị</div>
+    <nav class="admin-nav">
+      <a href="admin.html" class="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a href="admin-users.html"><i class="fa-solid fa-users"></i> Quản lý người dùng</a>
+      <a href="admin-documents.html"><i class="fa-solid fa-folder-open"></i> Quản lý tài liệu</a>
+    </nav>
+    <div class="as-label">Khác</div>
+    <nav class="admin-nav">
+      <a href="documents.html"><i class="fa-solid fa-eye"></i> Xem website</a>
+      <a href="profile.html"><i class="fa-solid fa-user-gear"></i> Tài khoản của tôi</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div><h1>Dashboard tổng quan</h1><p>Theo dõi hoạt động của website theo thời gian thực.</p></div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="card stat-card">
+        <div class="stat-top"><div class="stat-icon" style="background:var(--primary);"><i class="fa-solid fa-users"></i></div><span class="stat-delta up"><i class="fa-solid fa-arrow-up"></i> Tổng</span></div>
+        <div class="stat-value" id="stat-total-users">—</div>
+        <div class="stat-label">Tổng số người dùng</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-top"><div class="stat-icon" style="background:var(--accent);"><i class="fa-solid fa-chart-line"></i></div></div>
+        <div class="stat-value" id="stat-total-visits">—</div>
+        <div class="stat-label">Tổng lượt truy cập</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-top"><div class="stat-icon" style="background:var(--accent-2);"><i class="fa-solid fa-signal"></i></div></div>
+        <div class="stat-value" id="stat-online-users">—</div>
+        <div class="stat-label">Người đang online</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-top"><div class="stat-icon" style="background:var(--warn);"><i class="fa-solid fa-download"></i></div></div>
+        <div class="stat-value" id="stat-total-downloads">—</div>
+        <div class="stat-label">Tổng lượt tải tài liệu</div>
+      </div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card chart-card">
+        <h3>Người dùng mới theo ngày</h3>
+        <p class="chart-sub">7 ngày gần nhất</p>
+        <canvas id="chart-new-users"></canvas>
+      </div>
+      <div class="card chart-card">
+        <h3>Thống kê theo môn học</h3>
+        <p class="chart-sub">Tỉ lệ tài liệu mỗi môn</p>
+        <canvas id="chart-subjects"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-row-2">
+      <div class="card chart-card">
+        <h3>Top tài liệu tải nhiều nhất</h3>
+        <p class="chart-sub">Xếp hạng theo lượt tải</p>
+        <canvas id="chart-downloads"></canvas>
+      </div>
+      <div class="card chart-card">
+        <h3>Bảng xếp hạng chi tiết</h3>
+        <p class="chart-sub">Top 5 tài liệu</p>
+        <div id="top-docs-list"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
